@@ -72,6 +72,11 @@ class Scrembler:
     def ChiCquare(self, seq):
         z = seq.count(0) / len(seq)
         o = seq.count(1) / len(seq)
+        return chisquare(seq)
+
+    def ChiCquareManual(self, seq):
+        z = seq.count(0) / len(seq)
+        o = seq.count(1) / len(seq)
         return chisquare([z, o])
 
 
@@ -79,9 +84,13 @@ class Scrembler:
         Seq = []
         poly_bit = list(reversed(self.MakePolyArr()))
         val = deque(self.IntToBitArray(self.init_value))
+        if len(val) > len(poly_bit):
+            poly_bit+= [0]*( len(val) - len(poly_bit))
+        while len(val) != len(poly_bit):
+            val.appendleft(0)
         for i in range(N):
             v = val[0] & poly_bit[0]
-            for s in range(1,len(val)-1):
+            for s in range(1,len(poly_bit)-1):
                 v^=val[s] & poly_bit[s]    
             val.appendleft(v)
             Seq.append(val.pop())
@@ -108,5 +117,5 @@ class Scrembler:
             else:
                 print("Корреляция порядка {} присутствует".format(i))
 
-        print(self.ChiCquare(Seq))
+        print(self.ChiCquareManual(Seq))
         return Seq

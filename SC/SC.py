@@ -10,7 +10,7 @@ class Scrambler:
 
         self.sp_seq = []
         #self.polynom = {1: [8, 7, 6, 3, 2, 0], 2: [8, 5, 3, 2, 0]}
-        self.polynom = {1: [ 7, 6, 2 ], 2: [8, 5, 3, 2, 0]}
+        self.polynom = {1: [ 7,6,2 ], 2: [9,4, 0]}
         self.dim = {1: 8, 2: 8}
         self.ref_gam = None
         self.poly_num = None
